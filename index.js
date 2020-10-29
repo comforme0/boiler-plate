@@ -25,9 +25,7 @@ app.get('/', (req, res) => {
 
 app.post("/register", (req, res) => {
 
-  console.log(req.body)
-  const user = new User;
-
+  const user = new User(req.body);
   user.save((err, doc) => {
       if (err) return res.json({ success: false, err });
       return res.status(200).json({
@@ -35,8 +33,6 @@ app.post("/register", (req, res) => {
       });
   });
 });
-
-// mongodb+srv://comforme:<password>@boilerplate.6foma.mongodb.net/<dbname>?retryWrites=true&w=majority
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
